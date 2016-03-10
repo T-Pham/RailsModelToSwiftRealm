@@ -46,8 +46,9 @@ int main(int argc, const char * argv[]) {
         [firstLineScanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\""] intoString:nil];
         firstLineScanner.scanLocation++;
         [firstLineScanner scanCharactersFromSet:nameCharacterSet intoString:&model];
+        NSString *firstChar = [model substringToIndex:1];
         model = toCamelCase(model);
-        NSString *Model = [model capitalizedString];
+        NSString *Model = [model stringByReplacingCharactersInRange:(NSRange){0, 1} withString:[firstChar capitalizedString]];
 
         NSMutableString *allVars = [[NSMutableString alloc] init];
         NSMutableString *allMaps = [[NSMutableString alloc] init];
