@@ -18,12 +18,14 @@ NSString *toCamelCase(NSString *s)
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSDictionary *typeMap = @{@"text": @"String",
+                                  @"string": @"String",
                                   @"integer": @"Int",
                                   @"datetime": @"NSDate",
                                   @"boolean": @"Bool",
                                   @"float": @"CGFloat"
                                   };
         NSDictionary *valueMap = @{@"text": @"\"\"",
+                                   @"string": @"\"\"",
                                    @"integer": @"0",
                                    @"datetime": @"NSDate()",
                                    @"boolean": @"false",
