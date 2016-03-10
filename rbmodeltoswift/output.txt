@@ -1,0 +1,34 @@
+//
+//  Rmd<#Model#>.swift
+//  RingMDV2
+//
+//  Created by Thanh Pham on 3/10/16.
+//  Copyright © 2016 Medpats Global Pte. Ltd. All rights reserved.
+//
+
+import Foundation
+import RealmSwift
+import ObjectMapper
+
+class Rmd<#Model#>: Object, Mappable {
+
+    dynamic var <#model#>Id: Int = 0
+<#allVars#>
+    override static func primaryKey() -> String? {
+        return "<#model#>Id"
+    }
+
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+
+    func mapping(map: Map) {
+        <#model#>Id <- map["id"]
+<#allMaps#>    }
+
+}
+
+let parse<#Model#>: JSONDictionary -> Rmd<#Model#>? = { json in
+    let <#model#> = Mapper<Rmd<#Model#>>().map(json)
+    return <#model#>
+}

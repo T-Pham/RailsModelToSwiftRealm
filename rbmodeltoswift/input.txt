@@ -1,0 +1,9 @@
+create_table "answer", force: :cascade do |t|
+t.text     "content",               null: false
+t.integer  "user_id"
+t.integer  "question_id"
+t.datetime "created_at"
+t.datetime "updated_at"
+t.integer  "thanks_notes_count"
+t.integer  "latest_thanks_note_id"
+end
