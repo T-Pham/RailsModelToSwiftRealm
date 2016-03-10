@@ -20,15 +20,25 @@ void scanTable(NSString *input) {
                               @"string": @"String",
                               @"integer": @"Int",
                               @"datetime": @"NSDate",
+                              @"date": @"NSDate",
                               @"boolean": @"Bool",
-                              @"float": @"CGFloat"
+                              @"float": @"CGFloat",
+                              @"inet": @"String",
+                              @"decimal": @"Double",
+                              @"json": @"String",
+                              @"tsvector": @"String"
                               };
     NSDictionary *valueMap = @{@"text": @"\"\"",
                                @"string": @"\"\"",
                                @"integer": @"0",
                                @"datetime": @"NSDate()",
+                               @"date": @"NSDate()",
                                @"boolean": @"false",
-                               @"float": @"0"
+                               @"float": @"0",
+                               @"inet": @"\"127.0.0.1\"",
+                               @"decimal": @"0",
+                               @"json": @"\"{}\"",
+                               @"tsvector": @"\"\""
                                };
 
     NSMutableCharacterSet *nameCharacterSet = [NSMutableCharacterSet alphanumericCharacterSet];
@@ -73,6 +83,9 @@ void scanTable(NSString *input) {
         [lineScanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\""] intoString:nil];
         [lineScanner scanCharactersFromSet:nameCharacterSet intoString:&name];
         NSString *camelName = toCamelCase(name);
+
+        assert(typeMap[type] != nil);
+        assert(valueMap[type] != nil);
 
         [allVars appendFormat:@"    dynamic var %@: %@ = %@\n", camelName, typeMap[type], valueMap[type], nil];
         [allMaps appendFormat:@"        %@ <- map[\"%@\"]\n", camelName, name, nil];
